@@ -17,7 +17,7 @@ namespace MonoGameWindowsDesktopApplication1
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _width = 800;
+            _width = 1400;
             _height = 800;
             _world = new World(this);
         }

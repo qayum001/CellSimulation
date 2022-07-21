@@ -20,14 +20,15 @@ namespace MonoGameWindowsDesktopApplication1.Component
         
         private void Move()
         {
+            var currentIndex = Cell.Transform.Index;
+            World.Map[currentIndex.X, currentIndex.Y].IsFree = false;
+            
             var newPos = CanMoveToThisDirection();
             
             Rotate();
-            
-            var currentIndex = Cell.Transform.Index;
-            
+            Cell.Transform.Location = newPos.p;
             Cell.Transform.Rectangle = new Rectangle(newPos.p.X, newPos.p.Y, World.CellsSize, World.CellsSize);
-            World.Map[currentIndex.X, currentIndex.Y].IsFree = false;
+            Cell.Transform.Index = newPos.i;
             World.Map[newPos.i.X, newPos.i.Y].IsFree = true;
         }
         
@@ -44,7 +45,7 @@ namespace MonoGameWindowsDesktopApplication1.Component
 
         private (Point p, Point i) GetNewPosition(Direction direction)
         {
-            var location = Cell.Transform.Rectangle.Location;
+            var location = Cell.Transform.Location;
             var cellSize = World.CellsSize;
             var index = Cell.Transform.Index;
             
@@ -53,7 +54,7 @@ namespace MonoGameWindowsDesktopApplication1.Component
             
             switch(direction)
             {
-                case Direction.Top :
+                case Direction.Top:
                     newPoint = new Point(location.X, location.Y - cellSize);
                     newIndex = new Point(index.X, index.Y - 1);
                     break;
@@ -101,7 +102,7 @@ namespace MonoGameWindowsDesktopApplication1.Component
         }
         private void Rotate()
         {
-            Cell.Transform.Direction = Direction.Top + _random.Next(7);
+            Cell.Transform.Direction = Direction.Top + _random.Next(8);
         }
     }
 }

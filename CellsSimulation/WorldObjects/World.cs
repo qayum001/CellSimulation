@@ -27,7 +27,7 @@ namespace MonoGameWindowsDesktopApplication1.WorldObjects
         public World(Game game)
         {
             Game = game;
-            Width = 800;
+            Width = 1400;
             Height = 800;
             CellsSize = Params.CellsSize;
             _cellsCount = Params.CellsCount;
@@ -99,8 +99,9 @@ namespace MonoGameWindowsDesktopApplication1.WorldObjects
                     Transform = new Transform()
                     {
                         Rectangle = new Rectangle(l * CellsSize, h * CellsSize, CellsSize, CellsSize),
-                        Direction = Direction.Top + _random.Next(6),
+                        Direction = Direction.Top + _random.Next(7),
                         Index = new Point(l, h),
+                        Location = new Point(l * CellsSize, h* CellsSize),
                         Id = currentCount,
                     }
                 };
